@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- SEO basics -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="A premium, responsive landing page template with conversions in mind." />
+  <meta property="og:title" content="NovaLaunch — Modern Landing Page Template" />
+  <meta property="og:description" content="Beautiful gradients, pricing toggle, testimonials, FAQ, dark mode, and smooth animations." />
+  <meta name="theme-color" content="#111827" />
+  <title>NovaLaunch — Modern Landing Page Template</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#7c5cff',
+            accent: '#19c6a7',
+            ink: '#0b1220',
+          },
+          boxShadow: {
+            glow: '0 10px 40px rgba(124,92,255,.35)',
+            card: '0 10px 30px rgba(0,0,0,.15)',
+          },
+          borderRadius: {
+            xl2: '1.125rem'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth scrolling and nicer focus */
+    html { scroll-behavior: smooth; }
+    .focus-ring:focus { outline: 2px solid #7c5cff; outline-offset: 3px; }
+    /* Glass effect */
+    .glass { background: rgba(255,255,255,.06); backdrop-filter: blur(10px); }
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    /* Logo marquee */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee { white-space: nowrap; display: flex; gap: 3rem; animation: marquee 16s linear infinite; }
+    .marquee:hover { animation-play-state: paused; }
+    /* Testimonial snap */
+    .snap-x { scroll-snap-type: x mandatory; }
+    .snap-center { scroll-snap-align: center; }
+    /* Gradient text */
+    .grad-text { background: linear-gradient(90deg, #7c5cff, #19c6a7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  </style>
+</head>
+<body class="bg-slate-950 text-white selection:bg-brand/30">
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-40 bg-slate-950/70 backdrop-blur border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <span class="inline-block h-7 w-7 rounded-lg" style="background: conic-gradient(from 90deg,#7c5cff,#19c6a7)"></span>
+          <span class="font-semibold">NovaLaunch</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#features" class="text-sm text-white/80 hover:text-white">Features</a>
+          <a href="#showcase" class="text-sm text-white/80 hover:text-white">Showcase</a>
+          <a href="#pricing" class="text-sm text-white/80 hover:text-white">Pricing</a>
+          <a href="#faq" class="text-sm text-white/80 hover:text-white">FAQ</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="themeBtn" class="focus-ring rounded-full px-3 py-2 text-sm glass border border-white/10">🌓 Theme</button>
+          <a href="#cta" class="hidden md:inline-block rounded-full bg-brand px-4 py-2 text-sm font-semibold shadow-glow hover:opacity-90">Get Started</a>
+          <button id="menuBtn" class="md:hidden focus-ring rounded-md px-3 py-2 glass border border-white/10">☰</button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10">
+      <nav class="mx-auto max-w-7xl px-4 py-3 space-y-2">
+        <a href="#features" class="block text-white/80 hover:text-white">Features</a>
+        <a href="#showcase" class="block text-white/80 hover:text-white">Showcase</a>
+        <a href="#pricing" class="block text-white/80 hover:text-white">Pricing</a>
+        <a href="#faq" class="block text-white/80 hover:text-white">FAQ</a>
+        <a href="#cta" class="inline-block rounded-full bg-brand px-4 py-2 text-sm font-semibold shadow-glow hover:opacity-90">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none"
+         style="background: radial-gradient(800px 400px at 20% -10%, rgba(124,92,255,.25), transparent),
+                        radial-gradient(800px 400px at 80% 0%, rgba(25,198,167,.18), transparent);"></div>
+
+    <div class="mx-auto max-w-7xl px-4 md:px-6 pt-20 pb-12 md:pt-28 md:pb-20">
+      <div class="grid items-center gap-10 md:grid-cols-2">
+        <div class="reveal">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/10 glass px-3 py-1 text-xs text-white/80">
+            <span>✨</span> New: AI suggestions included
+          </span>
+          <h1 class="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
+            Launch products that people <span class="grad-text">love</span>.
+          </h1>
+          <p class="mt-4 text-white/80">
+            A beautiful, responsive landing page template crafted to convert. Swap copy, add your screenshots, and publish today.
+          </p>
+
+          <form id="heroForm" class="mt-6 flex w-full max-w-md gap-2">
+            <input required type="email" placeholder="Enter your email"
+                   class="w-full rounded-xl2 border border-white/10 bg-white/5 px-4 py-3 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-brand/60">
+            <button class="rounded-xl2 bg-brand px-5 py-3 text-sm font-semibold shadow-glow hover:opacity-90">Notify me</button>
+          </form>
+
+          <div class="mt-5 flex items-center gap-3 text-xs text-white/60">
+            <span class="inline-flex -space-x-2 pr-2">
+              <span class="h-6 w-6 rounded-full bg-white/10 border border-white/10"></span>
+              <span class="h-6 w-6 rounded-full bg-white/10 border border-white/10"></span>
+              <span class="h-6 w-6 rounded-full bg-white/10 border border-white/10"></span>
+            </span>
+            Trusted by 3,000+ founders
+          </div>
+        </div>
+
+        <div class="relative reveal">
+          <div class="rounded-2xl border border-white/10 glass p-2 shadow-card">
+            <div class="h-[320px] w-full rounded-xl2 bg-gradient-to-br from-slate-800 to-slate-900 grid place-items-center">
+              <div class="rounded-xl2 bg-slate-950/70 border border-white/10 px-5 py-3 text-white/80">
+                Your app screenshot here
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -left-6 hidden md:block h-28 w-28 rotate-6 rounded-2xl border border-white/10 glass grid place-items-center text-xs text-white/70">
+            320% ROI
+          </div>
+          <div class="absolute -top-6 -right-6 hidden md:block h-28 w-28 -rotate-6 rounded-2xl border border-white/10 glass grid place-items-center text-xs text-white/70">
+            24h setup
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <section class="border-y border-white/5 bg-slate-950/40">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-8 overflow-hidden">
+      <div class="marquee opacity-70">
+        <img alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Crect width='120' height='30' fill='%23ffffff22'/%3E%3C/svg%3E">
+        <img alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Crect width='120' height='30' fill='%23ffffff22'/%3E%3C/svg%3E">
+        <img alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Crect width='120' height='30' fill='%23ffffff22'/%3E%3C/svg%3E">
+        <img alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Crect width='120' height='30' fill='%23ffffff22'/%3E%3C/svg%3E">
+        <img alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Crect width='120' height='30' fill='%23ffffff22'/%3E%3C/svg%3E">
+        <img alt="Logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30'%3E%3Crect width='120' height='30' fill='%23ffffff22'/%3E%3C/svg%3E">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="mx-auto max-w-7xl px-4 md:px-6 py-16">
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <h2 class="text-3xl font-bold">Everything you need to convert</h2>
+      <p class="mt-2 text-white/70">Built for clarity, speed, and trust. Swap content, ship fast.</p>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="reveal rounded-xl2 border border-white/10 glass p-6">
+        <div class="mb-3 inline-grid h-9 w-9 place-items-center rounded-lg bg-brand/20">🚀</div>
+        <h3 class="font-semibold">Blazing performance</h3>
+        <p class="mt-1 text-sm text-white/70">No heavy builds. Just HTML + Tailwind. Loads instantly.</p>
+      </div>
+      <div class="reveal rounded-xl2 border border-white/10 glass p-6">
+        <div class="mb-3 inline-grid h-9 w-9 place-items-center rounded-lg bg-accent/20">🧩</div>
+        <h3 class="font-semibold">Composable sections</h3>
+        <p class="mt-1 text-sm text-white/70">Mix-and-match sections to fit your story.</p>
+      </div>
+      <div class="reveal rounded-xl2 border border-white/10 glass p-6">
+        <div class="mb-3 inline-grid h-9 w-9 place-items-center rounded-lg bg-brand/20">🔒</div>
+        <h3 class="font-semibold">Best practices</h3>
+        <p class="mt-1 text-sm text-white/70">Accessible, SEO-friendly, and mobile-first.</p>
+      </div>
+      <div class="reveal rounded-xl2 border border-white/10 glass p-6">
+        <div class="mb-3 inline-grid h-9 w-9 place-items-center rounded-lg bg-accent/20">🎨</div>
+        <h3 class="font-semibold">On-brand styling</h3>
+        <p class="mt-1 text-sm text-white/70">Easy to retheme with a few color tweaks.</p>
+      </div>
+      <div class="reveal rounded-xl2 border border-white/10 glass p-6">
+        <div class="mb-3 inline-grid h-9 w-9 place-items-center rounded-lg bg-brand/20">💬</div>
+        <h3 class="font-semibold">Social proof</h3>
+        <p class="mt-1 text-sm text-white/70">Testimonials and logos that build trust.</p>
+      </div>
+      <div class="reveal rounded-xl2 border border-white/10 glass p-6">
+        <div class="mb-3 inline-grid h-9 w-9 place-items-center rounded-lg bg-accent/20">⚡</div>
+        <h3 class="font-semibold">Conversion CTAs</h3>
+        <p class="mt-1 text-sm text-white/70">Clear paths to sign up, buy, or contact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section id="showcase" class="border-y border-white/5 bg-slate-950/40">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-16">
+      <div class="grid gap-10 md:grid-cols-2">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold">Show your product in the best light</h2>
+          <p class="mt-2 text-white/70">Use the mock area to drop in your app screens. The glow and glass make it pop without distractions.</p>
+          <ul class="mt-4 space-y-2 text-white/80">
+            <li>• Pixel-perfect spacing and rhythm</li>
+            <li>• Dark/light theme out of the box</li>
+            <li>• Zero-config animations on scroll</li>
+          </ul>
+          <a href="#pricing" class="mt-6 inline-block rounded-full bg-accent px-5 py-3 text-sm font-semibold hover:opacity-90">See pricing</a>
+        </div>
+        <div class="reveal">
+          <div class="rounded-2xl border border-white/10 glass p-2 shadow-card">
+            <div class="h-[360px] w-full rounded-xl2 bg-gradient-to-br from-slate-800 to-slate-900 grid place-items-center">
+              <div class="rounded-xl2 bg-slate-950/70 border border-white/10 px-5 py-3 text-white/80">
+                Another screenshot block
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="mx-auto max-w-7xl px-4 md:px-6 py-16">
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <h2 class="text-3xl font-bold">Loved by builders</h2>
+      <p class="mt-2 text-white/70">Real feedback from real teams.</p>
+    </div>
+
+    <div class="mt-8 relative">
+      <div id="tsContainer" class="flex gap-4 overflow-x-auto snap-x scroll-px-4 pb-2">
+        <article class="reveal snap-center min-w-[320px] max-w-sm flex-1 rounded-xl2 border border-white/10 glass p-5">
+          <p class="text-white/80">“Clean, fast, and it converts. We shipped our MVP in a weekend.”</p>
+          <div class="mt-3 text-sm text-white/60">— Amina, Founder</div>
+        </article>
+        <article class="reveal snap-center min-w-[320px] max-w-sm flex-1 rounded-xl2 border border-white/10 glass p-5">
+          <p class="text-white/80">“The sections just click together. No fighting CSS.”</p>
+          <div class="mt-3 text-sm text-white/60">— João, Product Lead</div>
+        </article>
+        <article class="reveal snap-center min-w-[320px] max-w-sm flex-1 rounded-xl2 border border-white/10 glass p-5">
+          <p class="text-white/80">“Looks premium without a designer. 10/10.”</p>
+          <div class="mt-3 text-sm text-white/60">— Maya, Indie Dev</div>
+        </article>
+      </div>
+      <div class="mt-4 flex justify-center gap-3">
+        <button id="prevTs" class="focus-ring rounded-md glass px-3 py-2 border border-white/10">‹</button>
+        <button id="nextTs" class="focus-ring rounded-md glass px-3 py-2 border border-white/10">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="border-y border-white/5 bg-slate-950/40">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-16">
+      <div class="mx-auto max-w-2xl text-center reveal">
+        <h2 class="text-3xl font-bold">Simple, fair pricing</h2>
+        <p class="mt-2 text-white/70">Pay once, use forever. One license per site.</p>
+        <div class="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 glass px-2 py-1">
+          <span class="text-xs text-white/70">Monthly</span>
+          <button id="priceToggle" class="rounded-full bg-brand px-3 py-1 text-xs font-semibold">Yearly -20%</button>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="reveal rounded-2xl border border-white/10 glass p-6">
+          <h3 class="font-semibold">Starter</h3>
+          <div class="mt-2 text-3xl font-extrabold"><span class="price" data-m="19" data-y="15">$19</span><span class="text-base text-white/60">/mo</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-white/80">
+            <li>• All core sections</li>
+            <li>• Email support</li>
+            <li>• 1 project</li>
+          </ul>
+          <a href="#cta" class="mt-6 inline-block w-full rounded-xl2 bg-brand px-5 py-3 text-center text-sm font-semibold hover:opacity-90">Choose Starter</a>
+        </div>
+
+        <div class="reveal relative rounded-2xl border border-brand/40 bg-brand/10 p-6 shadow-glow">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand px-3 py-1 text-xs font-semibold">Popular</span>
+          <h3 class="mt-2 font-semibold">Pro</h3>
+          <div class="mt-2 text-3xl font-extrabold"><span class="price" data-m="39" data-y="31">$39</span><span class="text-base text-white/70">/mo</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-white/90">
+            <li>• Everything in Starter</li>
+            <li>• Advanced sections</li>
+            <li>• 5 projects</li>
+          </ul>
+          <a href="#cta" class="mt-6 inline-block w-full rounded-xl2 bg-brand px-5 py-3 text-center text-sm font-semibold hover:opacity-90">Choose Pro</a>
+        </div>
+
+        <div class="reveal rounded-2xl border border-white/10 glass p-6">
+          <h3 class="font-semibold">Enterprise</h3>
+          <div class="mt-2 text-3xl font-extrabold"><span class="price" data-m="99" data-y="79">$99</span><span class="text-base text-white/60">/mo</span></div>
+          <ul class="mt-4 space-y-2 text-sm text-white/80">
+            <li>• Unlimited projects</li>
+            <li>• Priority support</li>
+            <li>• Team license</li>
+          </ul>
+          <a href="#cta" class="mt-6 inline-block w-full rounded-xl2 bg-brand px-5 py-3 text-center text-sm font-semibold hover:opacity-90">Contact sales</a>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-xs text-white/60">30‑day money‑back guarantee • No hidden fees</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="mx-auto max-w-7xl px-4 md:px-6 py-16">
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <h2 class="text-3xl font-bold">Frequently asked questions</h2>
+      <p class="mt-2 text-white/70">Everything you need to know.</p>
+    </div>
+
+    <div class="mx-auto mt-8 max-w-3xl space-y-3">
+      <details class="reveal group rounded-xl2 border border-white/10 glass p-4">
+        <summary class="cursor-pointer list-none font-semibold">
+          Can I use it for commercial projects?
+          <span class="float-right text-white/50 group-open:rotate-180 transition">⌄</span>
+        </summary>
+        <p class="mt-2 text-white/70">Yes, one license per live domain. Contact us for extended licenses.</p>
+      </details>
+      <details class="reveal group rounded-xl2 border border-white/10 glass p-4">
+        <summary class="cursor-pointer list-none font-semibold">
+          Do you offer refunds?
+          <span class="float-right text-white/50 group-open:rotate-180 transition">⌄</span>
+        </summary>
+        <p class="mt-2 text-white/70">30‑day money‑back guarantee. No questions asked.</p>
+      </details>
+      <details class="reveal group rounded-xl2 border border-white/10 glass p-4">
+        <summary class="cursor-pointer list-none font-semibold">
+          Is it easy to customize?
+          <span class="float-right text-white/50 group-open:rotate-180 transition">⌄</span>
+        </summary>
+        <p class="mt-2 text-white/70">Change colors, copy, and sections in minutes. Tailwind makes it a breeze.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="border-y border-white/5 bg-slate-950/40">
+    <div class="mx-auto max-w-7xl px-4 md:px-6 py-16">
+      <div class="reveal rounded-2xl border border-white/10 glass p-8 text-center">
+        <h3 class="text-2xl font-bold">Ready to grow faster?</h3>
+        <p class="mt-2 text-white/70">Grab the template, plug in your story, and publish with confidence.</p>
+        <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <a href="#" class="rounded-full bg-brand px-6 py-3 text-sm font-semibold shadow-glow hover:opacity-90">Buy template</a>
+          <a href="#features" class="rounded-full border border-white/10 px-6 py-3 text-sm font-semibold hover:bg-white/5">See features</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mx-auto max-w-7xl px-4 md:px-6 py-10">
+    <div class="grid gap-8 md:grid-cols-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block h-7 w-7 rounded-lg" style="background: conic-gradient(from 90deg,#7c5cff,#19c6a7)"></span>
+          <span class="font-semibold">NovaLaunch</span>
+        </div>
+        <p class="mt-3 text-sm text-white/70">Premium templates that help teams ship.</p>
+      </div>
+      <div>
+        <div class="font-semibold">Product</div>
+        <ul class="mt-3 space-y-2 text-sm text-white/70">
+          <li><a href="#features" class="hover:text-white">Features</a></li>
+          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+          <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold">Company</div>
+        <ul class="mt-3 space-y-2 text-sm text-white/70">
+          <li><a href="#" class="hover:text-white">About</a></li>
+          <li><a href="#" class="hover:text-white">Blog</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold">Stay in the loop</div>
+        <form id="footerForm" class="mt-3 flex gap-2">
+          <input required type="email" placeholder="Email address"
+                 class="w-full rounded-xl2 border border-white/10 bg-white/5 px-4 py-3 text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-brand/60">
+          <button class="rounded-xl2 bg-accent px-4 py-3 text-sm font-semibold hover:opacity-90">Join</button>
+        </form>
+        <p class="mt-2 text-xs text-white/60">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-white/10 pt-6 text-xs text-white/60">
+      © <span id="year"></span> NovaLaunch. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts: theme, menus, reveal, slider, pricing toggle, forms -->
+  <script>
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with persistence
+    const themeBtn = document.getElementById('themeBtn');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'dark');
+    if (savedTheme === 'light') document.body.classList.add('light');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      // Light mode palette tweak
+      document.body.style.backgroundColor = document.body.classList.contains('light') ? '#ffffff' : '';
+      document.body.style.color = document.body.classList.contains('light') ? '#0b1220' : '';
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Testimonials controls
+    const ts = document.getElementById('tsContainer');
+    document.getElementById('prevTs').addEventListener('click', () => ts.scrollBy({ left: -350, behavior: 'smooth' }));
+    document.getElementById('nextTs').addEventListener('click', () => ts.scrollBy({ left: 350, behavior: 'smooth' }));
+
+    // Pricing toggle (monthly/yearly)
+    const toggle = document.getElementById('priceToggle');
+    let yearly = true;
+    const setPrices = () => {
+      document.querySelectorAll('.price').forEach(el => {
+        const m = el.getAttribute('data-m'); const y = el.getAttribute('data-y');
+        el.textContent = `$${yearly ? y : m}`;
+      });
+      toggle.textContent = yearly ? 'Yearly -20%' : 'Monthly';
+    };
+    toggle.addEventListener('click', () => { yearly = !yearly; setPrices(); });
+    setPrices();
+
+    // Simple form handlers (demo)
+    const heroForm = document.getElementById('heroForm');
+    const footerForm = document.getElementById('footerForm');
+    [heroForm, footerForm].forEach(form => form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[type="email"]').value;
+      alert(`Thanks! We'll email ${email} soon.`);
+      form.reset();
+    }));
+  </script>
+</body>
+</html>
